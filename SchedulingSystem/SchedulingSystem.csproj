@@ -79,7 +79,18 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Drawing" />
+    <Reference Include="System.DirectoryServices">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.DirectoryServices.dll</HintPath>
+    </Reference>
+    <Reference Include="System.DirectoryServices.AccountManagement">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.DirectoryServices.AccountManagement.dll</HintPath>
+    </Reference>
+    <Reference Include="System.DirectoryServices.Protocols">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.DirectoryServices.Protocols.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.Drawing.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -195,7 +206,9 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="ConnectToLdap.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -215,6 +228,7 @@
     <Content Include="CSS_Files\font-awesome.min.css" />
     <Content Include="CSS_Files\metisMenu.css" />
     <Content Include="CSS_Files\morris.css" />
+    <Content Include="CSS_Files\responsive-calendar.css" />
     <Content Include="CSS_Files\sb-admin-2.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -222,11 +236,13 @@
     <Content Include="Content\Site.css" />
     <Content Include="index.html" />
     <Content Include="jQuery_Files\bootstrap.min.js" />
+    <Content Include="jQuery_Files\jquery.js" />
     <Content Include="jQuery_Files\jquery.min.js" />
     <Content Include="jQuery_Files\metisMenu.min.js" />
     <Content Include="jQuery_Files\morris-data.js" />
     <Content Include="jQuery_Files\morris.min.js" />
     <Content Include="jQuery_Files\raphael.min.js" />
+    <Content Include="jQuery_Files\responsive-calendar.js" />
     <Content Include="jQuery_Files\sb-admin-2.js" />
     <Content Include="jQuery_Files\sb-admin-2.min.js" />
     <Content Include="login.html" />
@@ -283,6 +299,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Dashboard\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
