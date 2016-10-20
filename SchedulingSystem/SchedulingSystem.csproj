@@ -226,12 +226,13 @@
     <Content Include="CSS_Files\bootstrap.css" />
     <Content Include="CSS_Files\bootstrap.min.css" />
     <Content Include="CSS_Files\font-awesome.min.css" />
+    <Content Include="CSS_Files\Fonts\fontawesome-webfont.svg" />
     <Content Include="CSS_Files\metisMenu.css" />
+    <Content Include="CSS_Files\metisMenu.min.css" />
     <Content Include="CSS_Files\morris.css" />
     <Content Include="CSS_Files\responsive-calendar.css" />
     <Content Include="CSS_Files\sb-admin-2.css" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="index.html" />
@@ -253,6 +254,14 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="CSS_Files\Fonts\fontawesome-webfont.eot" />
+    <Content Include="CSS_Files\Fonts\fontawesome-webfont.ttf" />
+    <Content Include="CSS_Files\Fonts\fontawesome-webfont.woff" />
+    <Content Include="CSS_Files\Fonts\fontawesome-webfont.woff2" />
+    <Content Include="CSS_Files\Fonts\FontAwesome.otf" />
+    <None Include="Properties\PublishProfiles\IISProfileHost.pubxml" />
+    <None Include="Properties\PublishProfiles\local.pubxml" />
+    <None Include="Properties\PublishProfiles\webDeploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -305,9 +314,6 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
@@ -330,7 +336,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>1967</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:1967/</IISUrl>
+          <IISUrl>http://localhost:1967</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
