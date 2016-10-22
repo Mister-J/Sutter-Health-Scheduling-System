@@ -10,7 +10,7 @@ namespace SchedulingSystem.Controllers
 {
     public class DashboardController : Controller
     {
-
+        public bool isLoggedIn = false;
         // GET: Dashboard
         public ActionResult Index()
         {
@@ -20,9 +20,17 @@ namespace SchedulingSystem.Controllers
             //{
 
             // }
-            DashboardViewModel dashboardData = new DashboardViewModel();
+            var dashboardData = new DashboardViewModel();
 
             return View(dashboardData);
         }
+
+        public ActionResult Login()
+        {
+            
+
+            return View();
+        }
+
     }
 }

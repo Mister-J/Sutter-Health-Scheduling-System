@@ -217,6 +217,7 @@
     <Compile Include="Master_Schedule.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DashboardViewModel.cs" />
+    <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Notifications.cs" />
@@ -280,6 +281,25 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Views\Dashboard\CSS_Files\bootstrap.css" />
+    <Content Include="Views\Dashboard\CSS_Files\bootstrap.min.css" />
+    <Content Include="Views\Dashboard\CSS_Files\font-awesome.min.css" />
+    <Content Include="Views\Dashboard\CSS_Files\Fonts\fontawesome-webfont.svg" />
+    <Content Include="Views\Dashboard\CSS_Files\metisMenu.css" />
+    <Content Include="Views\Dashboard\CSS_Files\metisMenu.min.css" />
+    <Content Include="Views\Dashboard\CSS_Files\morris.css" />
+    <Content Include="Views\Dashboard\CSS_Files\responsive-calendar.css" />
+    <Content Include="Views\Dashboard\CSS_Files\sb-admin-2.css" />
+    <Content Include="Views\Dashboard\jQuery_Files\bootstrap.min.js" />
+    <Content Include="Views\Dashboard\jQuery_Files\jquery.js" />
+    <Content Include="Views\Dashboard\jQuery_Files\jquery.min.js" />
+    <Content Include="Views\Dashboard\jQuery_Files\metisMenu.min.js" />
+    <Content Include="Views\Dashboard\jQuery_Files\morris-data.js" />
+    <Content Include="Views\Dashboard\jQuery_Files\morris.min.js" />
+    <Content Include="Views\Dashboard\jQuery_Files\raphael.min.js" />
+    <Content Include="Views\Dashboard\jQuery_Files\responsive-calendar.js" />
+    <Content Include="Views\Dashboard\jQuery_Files\sb-admin-2.js" />
+    <Content Include="Views\Dashboard\jQuery_Files\sb-admin-2.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -315,6 +335,12 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
+    <Content Include="Views\Dashboard\CSS_Files\Fonts\fontawesome-webfont.eot" />
+    <Content Include="Views\Dashboard\CSS_Files\Fonts\fontawesome-webfont.ttf" />
+    <Content Include="Views\Dashboard\CSS_Files\Fonts\fontawesome-webfont.woff" />
+    <Content Include="Views\Dashboard\CSS_Files\Fonts\fontawesome-webfont.woff2" />
+    <Content Include="Views\Dashboard\CSS_Files\Fonts\FontAwesome.otf" />
+    <Content Include="Views\Dashboard\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

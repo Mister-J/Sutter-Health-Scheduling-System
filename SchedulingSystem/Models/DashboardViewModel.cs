@@ -9,13 +9,14 @@ namespace SchedulingSystem.Models
 {
     public class DashboardViewModel
     {
-        public Master_Schedule testSchedule { get; set; }
-        
+        public Master_Schedule testDashBoard;   
+           
         public DashboardViewModel ()
         {
+
+            testDashBoard = new Master_Schedule();
+            testDashBoard.Schedule_ID = 0;
             
-            testSchedule.Schedule_ID = 0;
-            testSchedule.Lunch = 1;
 
         }
 

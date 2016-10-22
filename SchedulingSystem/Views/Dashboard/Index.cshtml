@@ -1,26 +1,33 @@
-﻿
-@{
-    ViewBag.Title = "View";
+﻿@model SchedulingSystem.Models.DashboardViewModel
+
+@{ 
+    Layout = null;
 }
 
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en">
 <head>
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>@Model.testDashBoard.Schedule_ID</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="../CSS_Files/bootstrap.min.css" rel="stylesheet">
+    <link type="text/css" href="../CSS_Files/bootstrap.min.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
-    <link href="../CSS_Files/metisMenu.min.css" rel="stylesheet">
+    <link type="text/css" href="../CSS_Files/metisMenu.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="../CSS_Files/sb-admin-2.css" rel="stylesheet">
+    <link type="text/css" href="../CSS_Files/sb-admin-2.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
-    <link href="../CSS_Files/morris.css" rel="stylesheet">
+    <link type="text/css" href="../CSS_Files/morris.css" rel="stylesheet">
 
-    <!-- Custom Fonts -->
     <link href="../CSS_Files/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -942,7 +949,7 @@
         <!-- /#page-wrapper -->
 
     </div>
-
+    <!-- /#wrapper -->
     <!-- jQuery -->
     <script src="../jQuery_Files/jquery.min.js"></script>
 
@@ -962,5 +969,3 @@
 
 </body>
 </html>
-
-
