@@ -5,6 +5,9 @@ using System.Web;
 using System.Web.Mvc;
 using SchedulingSystem.Models;
 using System.Data.SqlClient;
+using System.Data;
+using System.Configuration;
+
 
 namespace SchedulingSystem.Controllers
 {
@@ -14,12 +17,20 @@ namespace SchedulingSystem.Controllers
         // GET: Dashboard
         public ActionResult Index()
         {
-            //SqlConnection conn = new SqlConnection("Server=WIN-GU157GQNLCR;Database=Sutter_Schedule;uid=Administrator;password=4aBVh5iDm");
-            //conn.Open();
-            // if (conn.Open == true)
-            //{
+            try
+            {
+                SqlConnection conn = new SqlConnection("server=sutterdb.cdnagtbeyki3.us-west-2.rds.amazonaws.com,1433; database=SutterDB;user id=sutterdbadmin;password=M6)wo697s*W");
+                conn.Open();
+                if (conn.State == ConnectionState.Open)
+                {
+                    Response.Write("Connection OK!");
+                }
+                
+            } catch
+            {
+                Response.Write("No Connection!");
+            }
 
-            // }
             var dashboardData = new DashboardViewModel();
 
             return View(dashboardData);
