@@ -31,6 +31,11 @@ namespace SchedulingSystem.Controllers
                 Response.Write("No Connection!");
             }
 
+            var connectionInfo = new ConnectToLdap();
+            connectionInfo.clientConnection("a", "a", "a", "a");
+            bool test = connectionInfo.validateUserByBind("test", "test");
+            Response.Write(test);
+
             var dashboardData = new DashboardViewModel();
 
             return View(dashboardData);

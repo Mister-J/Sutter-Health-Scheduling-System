@@ -4,26 +4,48 @@ using System.Linq;
 using System.Web;
 using System.Net;
 using System.DirectoryServices;
-
+using System.DirectoryServices.Protocols;
 
 namespace SchedulingSystem
 {
     public class ConnectToLdap
     {
-        private static string username;
-        private static string password;
-
-        public ConnectToLdap(string usernameText, string passwordText)
+        private LdapConnection connection;
+        public void clientConnection(string username, string domain, string password, string url)
         {
-            username = usernameText;
-            password = passwordText;
+            var credentials = new NetworkCredential(username, password, domain);
+            var serverId = new LdapDirectoryIdentifier(url);
+
+
+            connection = new LdapConnection(serverId, credentials);
         }
 
-        public static DirectoryEntry createDirectoryEntry()
+
+
+
+        public bool validateUserByBind(string username, string password)
         {
-            DirectoryEntry ldapConnection = new DirectoryEntry("LDAP://example.com", username, password);
-            ldapConnection.AuthenticationType = AuthenticationTypes.Secure;
-            return ldapConnection; 
+            bool result = true;
+            var credentials = new NetworkCredential(username, password);
+            var serverId = new LdapDirectoryIdentifier(connection.SessionOptions.HostName);
+
+
+            var conn = new LdapConnection(serverId, credentials);
+            try
+            {
+                conn.Bind();
+
+            }
+            catch (Exception)
+            {
+                result = false;
+            }
+
+
+            conn.Dispose();
+
+
+            return result;
         }
 
     }
