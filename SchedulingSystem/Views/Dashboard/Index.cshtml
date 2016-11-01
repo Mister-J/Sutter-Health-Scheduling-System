@@ -38,6 +38,7 @@
     <![endif]-->
 
     <link rel="stylesheet" href="../CSS_Files/pikaday.css">
+    <link rel="stylesheet" href="../CSS_Files/responsive-calendar.css" type="text/css">
     <!--
         <link rel="stylesheet" href="CSS_Files/site.css">
     -->
@@ -510,10 +511,43 @@
                             </div>
                         </div>
                         <!-- /.panel-heading -->
+
+                        <!-- Insert graphs and stuff here-->
+                        
+                        <!--
                         <div class="panel-body">
                             <input type="text" id="datepicker" placeholder=@Model.todayDate.ToString()>
                             <canvas id="EmployeeSchedule"></canvas>
                         </div>
+
+                      -->
+
+                       <div class="panel-body">
+                        <div class="responsive-calendar">
+                            <div class="controls">
+                                <a class="pull-left" data-go="prev"><div class="btn btn-primary">Prev</div></a>
+                                <h4><span data-head-year></span> <span data-head-month></span></h4>
+                                <a class="pull-right" data-go="next"><div class="btn btn-primary">Next</div></a>
+                            </div><hr />
+                            <div class="day-headers">
+                                <div class="day header">Mon</div>
+                                <div class="day header">Tue</div>
+                                <div class="day header">Wed</div>
+                                <div class="day header">Thu</div>
+                                <div class="day header">Fri</div>
+                                <div class="day header">Sat</div>
+                                <div class="day header">Sun</div>
+                            </div>
+                            <div class="days" data-group="days">
+
+                            </div>
+                        </div>
+
+                           <br />
+                        <canvas id="EmployeeSchedule"></canvas>
+                       </div>
+                        <!-- Insert graphs and stuff up-->
+
                         <!-- /.panel-body -->
                     </div>
                     <!-- /.panel -->
@@ -634,8 +668,21 @@
     <script src="../jQuery_Files/sb-admin-2.js"></script>
     <script src="../jQuery_Files/pikaday.js"></script>
     <script src="../jQuery_Files/Chart.js"></script>
+    <script src="../jQuery_Files/responsive-calendar.js"></script>
 
     <script>
+        $(document).ready(function () {
+            $(".responsive-calendar").responsiveCalendar({
+                //time: '2023-05',
+                events: {
+                    "2013-04-30": { "number": 5, "url": "http://w3widgets.com/responsive-slider" },
+                    "2013-04-26": { "number": 1, "url": "http://w3widgets.com" },
+                    "2013-05-03": { "number": 1 },
+                    "2013-06-12": {}
+                }
+            });
+        });
+
         var a = 1;
         var b = 2;
         var c = 3;
@@ -663,16 +710,6 @@
         }
 
 
-        var picker = new Pikaday(
-            {
-                field: document.getElementById('datepicker'),
-                firstDay: 1,
-                minDate: new Date(),
-                maxDate: new Date(2020, 12, 31),
-                yearRange: [2000, 2020]
-            });
-
-
     </script>
 
 </body>
@@ -688,6 +725,42 @@ commented code here:
                             <div id="morris-area-chart"></div>
                         </div>
 
+
+
+        var picker = new Pikaday(
+            {
+                field: document.getElementById('datepicker'),
+                firstDay: 1,
+                minDate: new Date(),
+                maxDate: new Date(2020, 12, 31),
+                yearRange: [2000, 2020]
+            });
+
+        var a = 1;
+        var b = 2;
+        var c = 3;
+        var d = 4;
+        var e = 5;
+        var f = 6;
+        var g = 7;
+        var barChartData = {
+            labels: ["Joey", "Jake", "Jacob", "Yen", "Naser", "Duru", "Esther"],
+            datasets: [
+                {
+                    fillColor: "gray",
+                    strokeColor: "blue",
+                    data: [a, b, c, d, e, f, g]
+                }
+
+            ]
+
+        }
+        window.onload = function () {
+            var ctx = document.getElementById("EmployeeSchedule").getContext("2d");
+            window.myBar = new Chart(ctx).Bar(barChartData, {
+                responsive: true
+            });
+        }
 
 
         var picker = new Pikaday(
