@@ -234,12 +234,14 @@
     <Content Include="CSS_Files\bootstrap.min.css" />
     <Content Include="CSS_Files\font-awesome.min.css" />
     <Content Include="CSS_Files\Fonts\fontawesome-webfont.svg" />
+    <Content Include="CSS_Files\fullcalendar.css" />
     <Content Include="CSS_Files\metisMenu.css" />
     <Content Include="CSS_Files\metisMenu.min.css" />
     <Content Include="CSS_Files\morris.css" />
     <Content Include="CSS_Files\pikaday.css" />
     <Content Include="CSS_Files\responsive-calendar.css" />
     <Content Include="CSS_Files\sb-admin-2.css" />
+    <Content Include="CSS_Files\scheduler.css" />
     <Content Include="CSS_Files\site.css" />
     <Content Include="CSS_Files\theme.css" />
     <Content Include="CSS_Files\triangle.css" />
@@ -250,6 +252,7 @@
     <Content Include="jQuery_Files\bootstrap.min.js" />
     <Content Include="jQuery_Files\canvasjs.min.js" />
     <Content Include="jQuery_Files\Chart.js" />
+    <Content Include="jQuery_Files\fullcalendar.js" />
     <Content Include="jQuery_Files\jquery.js" />
     <Content Include="jQuery_Files\jquery.min.js" />
     <Content Include="jQuery_Files\metisMenu.min.js" />
@@ -262,6 +265,7 @@
     <Content Include="jQuery_Files\responsive-calendar.js" />
     <Content Include="jQuery_Files\sb-admin-2.js" />
     <Content Include="jQuery_Files\sb-admin-2.min.js" />
+    <Content Include="jQuery_Files\scheduler.js" />
     <Content Include="login.html" />
     <Content Include="Scripts\ai.0.22.19-build00125.js" />
     <Content Include="Scripts\ai.0.22.19-build00125.min.js" />

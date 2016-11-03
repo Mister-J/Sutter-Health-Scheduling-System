@@ -7,6 +7,7 @@ using SchedulingSystem.Models;
 using System.Data.SqlClient;
 using System.Data;
 using System.Configuration;
+using System.DirectoryServices;
 
 
 namespace SchedulingSystem.Controllers
@@ -18,15 +19,15 @@ namespace SchedulingSystem.Controllers
         public ActionResult Index()
         {
             var connectionInfo = new ConnectToLdap();
-            connectionInfo.clientConnection("a", "a", "a", "a");
-            bool test = connectionInfo.validateUserByBind("test", "test");
-  
+            connectionInfo.clientConnection("test", "csusdc01", "P@ssw0rd!", "test@csus.com");
+            bool test = connectionInfo.validateUserByBind("test", "P@ssw0rd!");
 
+      
             var dashboardData = new DashboardViewModel();
             dashboardData.ConnectToSql();
             Response.Write(dashboardData.connectionStatus);
-            Response.Write(dashboardData.testVariables);
-            Response.Write(dashboardData.testDashBoard.Schedule_ID);
+
+            Response.Write(test);
             return View(dashboardData);
         }
 
@@ -35,6 +36,17 @@ namespace SchedulingSystem.Controllers
             
 
             return View();
+        }
+
+        static DirectoryEntry createDirectoryEntry()
+        {
+            // create and return new LDAP connection with desired settings  
+
+            DirectoryEntry ldapConnection = new DirectoryEntry("csus.dc01.com");
+            ldapConnection.Path = "LDAP://OU=user,DC=csus.dc01.com";
+            ldapConnection.AuthenticationType = AuthenticationTypes.Secure;
+
+            return ldapConnection;
         }
 
     }
