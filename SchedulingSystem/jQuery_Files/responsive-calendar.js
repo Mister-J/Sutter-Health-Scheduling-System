@@ -261,6 +261,7 @@
                 this.$element.find("[data-head-month]").html(this.options.translateMonths[time.getMonth()]);
                 draw = function () {
                     var dayNum, setEvents;
+
                     thisRef.$element.find('[data-group="days"]').empty();
                     dayNum = dayBase - firstDayOfMonth;
                     i = thisRef.options.startFromSunday ? 0 : 1;

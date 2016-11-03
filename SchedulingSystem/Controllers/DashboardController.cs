@@ -17,27 +17,16 @@ namespace SchedulingSystem.Controllers
         // GET: Dashboard
         public ActionResult Index()
         {
-            try
-            {
-                SqlConnection conn = new SqlConnection("server=sutterdb.cdnagtbeyki3.us-west-2.rds.amazonaws.com,1433; database=SutterDB;user id=sutterdbadmin;password=M6)wo697s*W");
-                conn.Open();
-                if (conn.State == ConnectionState.Open)
-                {
-                    Response.Write("Connection OK!");
-                }
-                
-            } catch
-            {
-                Response.Write("No Connection!");
-            }
-
             var connectionInfo = new ConnectToLdap();
             connectionInfo.clientConnection("a", "a", "a", "a");
             bool test = connectionInfo.validateUserByBind("test", "test");
-            Response.Write(test);
+  
 
             var dashboardData = new DashboardViewModel();
-
+            dashboardData.ConnectToSql();
+            Response.Write(dashboardData.connectionStatus);
+            Response.Write(dashboardData.testVariables);
+            Response.Write(dashboardData.testDashBoard.Schedule_ID);
             return View(dashboardData);
         }
 

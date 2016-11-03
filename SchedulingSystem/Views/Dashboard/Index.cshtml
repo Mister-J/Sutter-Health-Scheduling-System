@@ -672,13 +672,21 @@
 
     <script>
         $(document).ready(function () {
-            $(".responsive-calendar").responsiveCalendar({
-                //time: '2023-05',
-                events: {
-                    "2013-04-30": { "number": 5, "url": "http://w3widgets.com/responsive-slider" },
-                    "2013-04-26": { "number": 1, "url": "http://w3widgets.com" },
-                    "2013-05-03": { "number": 1 },
-                    "2013-06-12": {}
+            function addLeadingZero(num) {
+                if (num < 10) {
+                    return "0" + num;
+                } else {
+                    return "" + num;
+                }
+            }
+
+            $('.responsive-calendar').responsiveCalendar({
+                onDayClick: function (events) {
+                    var thisDayEvent, key;
+
+                    key = $(this).data('year') + '-' + addLeadingZero($(this).data('month')) + '-' + addLeadingZero($(this).data('day'));
+                    thisDayEvent = events[key];
+                    alert(thisDayEvent.number);
                 }
             });
         });
