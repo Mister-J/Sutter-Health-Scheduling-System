@@ -15,6 +15,7 @@ namespace SchedulingSystem.Models
     public class DashboardViewModel
     {
         public Master_Schedule testDashBoard = new Master_Schedule();
+        public Employee testEmployee = new Employee();
         public DateTime todayDate = DateTime.Today;
         public string connectionStatus;
         public string testVariables;
@@ -38,7 +39,7 @@ namespace SchedulingSystem.Models
                 if (conn.State == ConnectionState.Open)
                 {
                     connectionStatus = "Connection OK";
-                    SqlCommand selectCommand = new SqlCommand("SELECT Schedule_ID FROM Master_Schedule WHERE Schedule_ID = 888", conn);
+                    SqlCommand selectCommand = new SqlCommand("SELECT Emp_First_Name FROM Employees WHERE Emp_ID = 888", conn);
                     using (SqlDataReader reader = selectCommand.ExecuteReader())
                     {
 

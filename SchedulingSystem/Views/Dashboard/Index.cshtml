@@ -14,7 +14,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Sutter Health Schedule</title>
+    <title>Sutter Health Scheduling System</title>
 
     <!-- Bootstrap Core CSS -->
     <link type="text/css" href="../CSS_Files/bootstrap.min.css" rel="stylesheet">
@@ -519,7 +519,7 @@
                         
                         <div class="panel-body">
                             <div id='calendar'></div>
-                     
+                                    @Model.testDashBoard.Schedule_ID
                         
 
                            <br />
@@ -656,6 +656,7 @@
         $(function () { // document ready
 
             $('#calendar').fullCalendar({
+                schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
                 now: '2016-09-07',
                 editable: true, // enable draggable events
                 aspectRatio: 1.8,
@@ -672,9 +673,9 @@
                         duration: { days: 3 }
                     }
                 },
-                resourceLabelText: 'Rooms',
+                resourceLabelText: 'Employees',
                 resources: [
-                    { id: 'a', title: 'Auditorium A' },
+                    { id: 'a', title: '@Model.testDashBoard.Schedule_ID' },
                 
                     { id: 'z', title: 'Auditorium Z' }
                 ],
