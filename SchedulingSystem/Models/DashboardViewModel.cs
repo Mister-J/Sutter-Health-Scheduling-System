@@ -23,6 +23,8 @@ namespace SchedulingSystem.Models
         private SqlConnection conn;
         public Employee[] employee;
         public string jsonString;
+        public string resourceString = "[{ id: 1, title: abc }]";
+        public List<EmployeeJson> employeeList;
         public DashboardViewModel ()
         {
            
@@ -43,14 +45,19 @@ namespace SchedulingSystem.Models
                 employee = new Employee[count];
                 using (SqlDataReader reader = selectCommand.ExecuteReader())
                     {
-
-                    while(reader.Read()) {
-                        for (int i = 0; i <=count - 1; i++)
+                    int i = 0;
+                    while (reader.HasRows)
+                    {
+                        while (reader.Read())
                         {
+                            
                             employee[i] = new Employee();
-                            employee[i].Emp_First_Name = (string)reader["Emp_First_Name"];
+                            employee[i].Emp_First_Name = reader.GetString(0);
+                            i++;
+
 
                         }
+                        reader.NextResult();
                     }
                     
                             
@@ -58,14 +65,22 @@ namespace SchedulingSystem.Models
                         
                     }
                 EmployeeJson[] testEmployee = new EmployeeJson[count];
+                employeeList = new List<EmployeeJson>();
                 for (int i = 0; i <= count - 1; i++)
                 {
                     testEmployee[i] = new EmployeeJson();
                     testEmployee[i].id = i;
                     testEmployee[i].title = employee[i].Emp_First_Name;
+                    employeeList.Add(testEmployee[i]);
+
 
                 }
-                jsonString = JsonConvert.SerializeObject(testEmployee);
+                
+                jsonString = JsonConvert.SerializeObject(employeeList, Formatting.Indented);
+               
+                
+                
+                
 
                 conn.Close();
 
@@ -83,7 +98,8 @@ namespace SchedulingSystem.Models
 
 
     }
-class EmployeeJson
+
+public class EmployeeJson
 {
     public int id { get; set; }
     public string title { get; set; }
