@@ -7,12 +7,12 @@ namespace SchedulingSystem
 {
     public class Schedule_Lines : Master_Schedule
     {
-        public int Emp_ID { get; set; }
-        public int Emp_Shift_ID { get; set; }
-        public int Supervisor_ID { get; set; }
+        public int Schedule_Line_ID { get; set; }
         public int Exception_ID { get; set; }
-        public DateTime Timestamp { get; set; }
-        public int Supervisors_Supervisor_ID { get; set; }
-        public int Master_Schedule_Schedule_ID { get; set; }
+        public int Employees_Emp_ID { get; set; }
+        public string Shift_year { get; set; }
+        public string Shfit_Month { get; set; }
+        public string Shift_Day { get; set; }
+  
     }
 }

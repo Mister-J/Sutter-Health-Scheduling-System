@@ -16,6 +16,7 @@ namespace SchedulingSystem.Models
     public class DashboardViewModel
     {
         public Master_Schedule testDashBoard = new Master_Schedule();
+        public Schedule_Lines schedule;
         public Employee testEmployee = new Employee();
         public DateTime todayDate = DateTime.Today;
         public string connectionStatus;
@@ -25,6 +26,7 @@ namespace SchedulingSystem.Models
         public string jsonString;
         public string resourceString = "[{ id: 1, title: abc }]";
         public List<EmployeeJson> employeeList;
+        public string scheduleJsonString;
         public DashboardViewModel ()
         {
            
@@ -41,6 +43,7 @@ namespace SchedulingSystem.Models
                 connectionStatus = "Connection OK";
                 SqlCommand selectCommand = new SqlCommand("SELECT Emp_First_Name FROM Employees", conn);
                 SqlCommand countCommand = new SqlCommand("SELECT COUNT(*) From Employees", conn);
+                SqlCommand scheduleCommand = new SqlCommand("SELECT * FROM Schedule_Lines, Master_Schedule where Schedule_Line_ID = 10001 and Schedule_ID = 888", conn);
                 int count = (int)countCommand.ExecuteScalar();
                 employee = new Employee[count];
                 using (SqlDataReader reader = selectCommand.ExecuteReader())
@@ -64,6 +67,34 @@ namespace SchedulingSystem.Models
                             
                         
                     }
+
+
+
+                using (SqlDataReader scheduleReader = scheduleCommand.ExecuteReader())
+                {
+                    while (scheduleReader.Read())
+                    {
+                        
+                        schedule = new Schedule_Lines();
+                        schedule.Schedule_ID = (int)scheduleReader["Schedule_Line_ID"];
+                        schedule.Exception_ID = (int)scheduleReader["Exception_ID"];
+                        schedule.Shift_Start = (TimeSpan)scheduleReader["Shift_Start"];
+                        schedule.End_Shift = (TimeSpan)scheduleReader["End_Shift"];
+                    }
+
+
+
+
+                }
+
+                ScheduleJSon theSchedule = new ScheduleJSon();
+                theSchedule.id = schedule.Schedule_ID;
+                theSchedule.resourceID = schedule.Exception_ID;
+                theSchedule.start = schedule.Shift_Start.ToString();//String.Format("{0:s}", schedule.Shift_Start);
+                theSchedule.end = schedule.End_Shift.ToString();//String.Format("{0:s}", schedule.End_Shift);
+                theSchedule.title = "test";
+
+
                 EmployeeJson[] testEmployee = new EmployeeJson[count];
                 employeeList = new List<EmployeeJson>();
                 for (int i = 0; i <= count - 1; i++)
@@ -77,6 +108,7 @@ namespace SchedulingSystem.Models
                 }
                 
                 jsonString = JsonConvert.SerializeObject(employeeList, Formatting.Indented);
+                scheduleJsonString = JsonConvert.SerializeObject(theSchedule, Formatting.Indented);
                
                 
                 
@@ -103,4 +135,14 @@ public class EmployeeJson
 {
     public int id { get; set; }
     public string title { get; set; }
+}
+
+public class ScheduleJSon
+{
+    public int id { get; set; }
+    public int resourceID { get; set; }
+    public string start { get; set; }
+    public string end { get; set; }
+    public string title { get; set; }
+
 }
