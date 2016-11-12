@@ -28,7 +28,9 @@ namespace SchedulingSystem.Controllers
             Response.Write(dashboardData.connectionStatus);
 
             Response.Write(test);
+            Response.Write(dashboardData.jsonString);
             Response.Write(dashboardData.scheduleJsonString);
+            
             return View(dashboardData);
         }
 
