@@ -11,7 +11,7 @@ namespace SchedulingSystem
         public int Exception_ID { get; set; }
         public int Employees_Emp_ID { get; set; }
         public string Shift_year { get; set; }
-        public string Shfit_Month { get; set; }
+        public string Shift_Month { get; set; }
         public string Shift_Day { get; set; }
   
     }

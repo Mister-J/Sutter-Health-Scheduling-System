@@ -16,7 +16,7 @@ namespace SchedulingSystem.Models
     public class DashboardViewModel
     {
         public Master_Schedule testDashBoard = new Master_Schedule();
-        public Schedule_Lines schedule;
+        public Schedule_Lines[] schedule;
         public Employee testEmployee = new Employee();
         public DateTime todayDate = DateTime.Today;
         public string connectionStatus;
@@ -26,6 +26,7 @@ namespace SchedulingSystem.Models
         public string jsonString;
         public string resourceString = "[{ id: 1, title: abc }]";
         public List<EmployeeJson> employeeList;
+        public List<ScheduleJSon> scheduleList;
         public string scheduleJsonString;
         public DashboardViewModel ()
         {
@@ -40,11 +41,14 @@ namespace SchedulingSystem.Models
              conn.Open();
              if (conn.State == ConnectionState.Open)
              {
+                string scheduleStatement = 
                 connectionStatus = "Connection OK";
                 SqlCommand selectCommand = new SqlCommand("SELECT Emp_First_Name FROM Employees", conn);
                 SqlCommand countCommand = new SqlCommand("SELECT COUNT(*) From Employees", conn);
-                SqlCommand scheduleCommand = new SqlCommand("SELECT * FROM Schedule_Lines, Master_Schedule where Schedule_Line_ID = 10001 and Schedule_ID = 888", conn);
+                SqlCommand scheduleCommand = new SqlCommand("SELECT Schedule_Line_ID, Master_Schedule_Schedule_ID, Shift_Start, End_Shift, Emp_First_Name FROM Schedule_Lines, Master_Schedule, Employees where Schedule_ID = Master_Schedule_Schedule_ID and Emp_ID=Employees_Emp_ID order by Master_Schedule_Schedule_ID", conn);
+                SqlCommand scheduleCountCommand = new SqlCommand("SELECT COUNT(*) FROM Schedule_Lines, Master_Schedule", conn);
                 int count = (int)countCommand.ExecuteScalar();
+                int scheduleCount = (int)scheduleCountCommand.ExecuteScalar();
                 employee = new Employee[count];
                 using (SqlDataReader reader = selectCommand.ExecuteReader())
                     {
@@ -72,14 +76,22 @@ namespace SchedulingSystem.Models
 
                 using (SqlDataReader scheduleReader = scheduleCommand.ExecuteReader())
                 {
-                    while (scheduleReader.Read())
+                    int i = 0;
+                    while (scheduleReader.HasRows)
                     {
-                        
-                        schedule = new Schedule_Lines();
-                        schedule.Schedule_ID = (int)scheduleReader["Schedule_Line_ID"];
-                        schedule.Exception_ID = (int)scheduleReader["Exception_ID"];
-                        schedule.Shift_Start = (TimeSpan)scheduleReader["Shift_Start"];
-                        schedule.End_Shift = (TimeSpan)scheduleReader["End_Shift"];
+
+
+                        while (scheduleReader.Read())
+                        {
+
+                            schedule[i] = new Schedule_Lines();
+                            schedule[i].Schedule_ID = scheduleReader.GetInt32(0);
+                            schedule[i].Exception_ID = scheduleReader.GetInt32(1);
+                            schedule[i].Shift_Start = scheduleReader.GetDateTime(2);
+                            schedule[i].End_Shift = scheduleReader.GetDateTime(3);
+                            i++;
+                        }
+                        scheduleReader.NextResult();
                     }
 
 
@@ -87,12 +99,17 @@ namespace SchedulingSystem.Models
 
                 }
 
-                ScheduleJSon theSchedule = new ScheduleJSon();
-                theSchedule.id = schedule.Schedule_ID;
-                theSchedule.resourceID = schedule.Exception_ID;
-                theSchedule.start = schedule.Shift_Start.ToString();//String.Format("{0:s}", schedule.Shift_Start);
-                theSchedule.end = schedule.End_Shift.ToString();//String.Format("{0:s}", schedule.End_Shift);
-                theSchedule.title = "test";
+                ScheduleJSon[] theSchedule = new ScheduleJSon[scheduleCount];
+                scheduleList = new List<ScheduleJSon>();
+                for (int i = 0; i<=scheduleCount - 1; i++)
+                {
+                    theSchedule[i].id = schedule[i].Schedule_ID;
+                    theSchedule[i].resourceID = schedule[i].Exception_ID;
+                    theSchedule[i].start = String.Format("{0:s}", schedule[i].Shift_Start);
+                    theSchedule[i].end = String.Format("{0:s}", schedule[i].End_Shift);
+                    theSchedule[i].title = "test";
+                    scheduleList.Add(theSchedule[i]);
+                }
 
 
                 EmployeeJson[] testEmployee = new EmployeeJson[count];
@@ -108,7 +125,7 @@ namespace SchedulingSystem.Models
                 }
                 
                 jsonString = JsonConvert.SerializeObject(employeeList, Formatting.Indented);
-                scheduleJsonString = JsonConvert.SerializeObject(theSchedule, Formatting.Indented);
+                scheduleJsonString = JsonConvert.SerializeObject(scheduleList, Formatting.Indented);
                
                 
                 
