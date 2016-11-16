@@ -24,12 +24,8 @@ namespace SchedulingSystem.Controllers
 
       
             var dashboardData = new DashboardViewModel();
-            dashboardData.ConnectToSql();
-            Response.Write(dashboardData.connectionStatus);
-
-            Response.Write(test);
-            Response.Write(dashboardData.jsonString);
-            Response.Write(dashboardData.scheduleJsonString);
+            Response.Write(SqlStatements.connectionStatus);
+           // Response.Write(test);
             
             return View(dashboardData);
         }

@@ -400,9 +400,6 @@
                                 <div class="col-xs-3">
                                     <img src="http://oi58.tinypic.com/2nuspau.jpg" class="img-circle" style="width:128px;height:128px;" />
                                 </div>
-                                <div class="col-xs-9 text-right">
-                                    <h4>Joey Graziano</h4>
-                                </div>
                             </div>
                         </div>
                         <a href="#">
@@ -421,9 +418,6 @@
                                 <div class="col-xs-3">
                                     <img src="http://oi58.tinypic.com/2nuspau.jpg" class="img-circle" style="width:128px;height:128px;"/>
                                 </div>
-                                <div class="col-xs-9 text-right">
-                                    <h4>Jake Jablonsky</h4>
-                                </div>
                             </div>
                         </div>
                         <a href="#">
@@ -442,9 +436,6 @@
                                 <div class="col-xs-3">
                                     <img src="http://oi58.tinypic.com/2nuspau.jpg" class="img-circle" style="width:128px;height:128px;" />
                                 </div>
-                                <div class="col-xs-9 text-right">
-                                    <h4>Jacob Serna</h4>
-                                </div>
                             </div>
                         </div>
                         <a href="#">
@@ -462,9 +453,6 @@
                             <div class="row">
                                 <div class="col-xs-3">
                                     <img src="http://oi58.tinypic.com/2nuspau.jpg" class="img-circle" style="width:128px;height:128px;" />
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <h4>Paul Cielo</h4>
                                 </div>
                             </div>
                         </div>
@@ -651,8 +639,8 @@
 
         $(function () { // document ready
             
-            var jsonString = @Html.Raw(@Model.jsonString);
-            var scheduleJsonString = @Html.Raw(@Model.scheduleJsonString);
+            var jsonString = @Html.Raw(@Model.EmployeeJson());
+            var scheduleJsonString = @Html.Raw(@Model.GetJson());
             
                 
             

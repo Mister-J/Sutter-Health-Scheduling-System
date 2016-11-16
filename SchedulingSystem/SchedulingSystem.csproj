@@ -225,6 +225,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Schedule_Lines.cs" />
     <Compile Include="Skillset.cs" />
+    <Compile Include="SqlStatements.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Team.cs" />
   </ItemGroup>
