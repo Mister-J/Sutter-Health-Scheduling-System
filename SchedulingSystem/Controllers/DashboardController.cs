@@ -19,12 +19,13 @@ namespace SchedulingSystem.Controllers
         public ActionResult Index()
         {
             var connectionInfo = new ConnectToLdap();
-            connectionInfo.clientConnection("test", "csusdc01", "P@ssw0rd!", "test@csus.com");
-            bool test = connectionInfo.validateUserByBind("test", "P@ssw0rd!");
+            connectionInfo.clientConnection("administrator", "sutterlogin.webhop.net", "theverge55\\", "sutterlogin.webhop.net:2037");
+            bool test = connectionInfo.validateUserByBind("administrator", "theverge55\\");
 
       
             var dashboardData = new DashboardViewModel();
             Response.Write(SqlStatements.connectionStatus);
+            Response.Write(test);
            // Response.Write(test);
             
             return View(dashboardData);
@@ -34,6 +35,16 @@ namespace SchedulingSystem.Controllers
         {
             
 
+            return View();
+        }
+
+        public ActionResult CreateSchedule()
+        {
+            return View();
+        }
+
+        public ActionResult ChangeSchedule()
+        {
             return View();
         }
 
