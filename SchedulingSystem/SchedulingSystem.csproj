@@ -356,6 +356,8 @@
     <Content Include="Views\Dashboard\CSS_Files\Fonts\fontawesome-webfont.woff2" />
     <Content Include="Views\Dashboard\CSS_Files\Fonts\FontAwesome.otf" />
     <Content Include="Views\Dashboard\Login.cshtml" />
+    <Content Include="Views\Dashboard\CreateSchedule.cshtml" />
+    <Content Include="Views\Dashboard\ChangeSchedule.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
