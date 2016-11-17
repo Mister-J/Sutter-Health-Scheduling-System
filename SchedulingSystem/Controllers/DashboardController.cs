@@ -31,6 +31,14 @@ namespace SchedulingSystem.Controllers
             return View(dashboardData);
         }
 
+        [HttpPost]
+        public ActionResult CreateSchedule(string datepicker)
+        {
+            string test = datepicker;
+            Response.Write(test);
+            return View();
+        }
+
         public ActionResult Login()
         {
             

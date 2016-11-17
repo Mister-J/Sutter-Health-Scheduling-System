@@ -41,6 +41,8 @@
     <link rel="stylesheet" href="../CSS_Files/responsive-calendar.css" type="text/css">
     <link href="../CSS_Files/fullcalendar.css" rel="stylesheet" />
     <link href="../CSS_Files/scheduler.css" rel="stylesheet" />
+
+
     <!--
         <link rel="stylesheet" href="CSS_Files/site.css">
     -->
@@ -422,8 +424,18 @@
 
                         <div class="panel-body">
                             <h4>Create Schedule: Step 1</h4>
-                            <input id="datepicker" />
-                            <button >Create Schedule</button>
+                            <div class="form-group">
+                                <div class='input-group date' id='datetimepicker1'>
+                                    <input type='text' class="form-control" />
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                            
+                            
+                         
+
 
 
                             <br />
@@ -548,24 +560,19 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="../jQuery_Files/sb-admin-2.js"></script>
-    <script src="../jQuery_Files/pikaday.js"></script>
     <script src="../jQuery_Files/Chart.js"></script>
-    <script src="../jQuery_Files/responsive-calendar.js"></script>
     <script src="../jQuery_Files/moment.js"></script>
     <script src="../jQuery_Files/jquery.js"></script>
     <script src="../jQuery_Files/fullcalendar.js"></script>
     <script src="../jQuery_Files/scheduler.js"></script>
-    <script src="../jQuery_Files/pikaday.js"></script>
+    <script src="~/Scripts/bootstrap-datetimepicker.js"></script>
+    <script src="~/Scripts/respond.js"></script>
+  
 
-    <script>
-        var picker = new Pikaday(
-            {
-                field: document.getElementById('datepicker'),
-                firstDay: 1,
-                minDate: new Date(),
-                maxDate: new Date(2020, 12, 31),
-                yearRange: [2000, 2020]
-            });
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker1').datetimepicker();
+        })
     </script>
 
    
@@ -629,4 +636,6 @@ commented code here:
                 maxDate: new Date(2020, 12, 31),
                 yearRange: [2000, 2020]
             });
+
+
 -->

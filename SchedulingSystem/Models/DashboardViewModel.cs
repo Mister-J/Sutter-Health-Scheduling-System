@@ -35,6 +35,16 @@ namespace SchedulingSystem.Models
             employeeJsonString = JsonConvert.SerializeObject(Employees, Formatting.Indented);
             return employeeJsonString;
         }
+
+        public void CreateSchedule(string theDate)
+        {
+            SqlConnection conn = SqlStatements.ConnectToSql();
+            string sql = "INSERT INTO Master_Schedule(Schedule_ID, Shift_Length_Minutes, Shift_Start, End_Shift, Lunch, Timestamp) VALUES(@IDparam, 480, @ParamStart, @ParamEnd, @ParamLunch, @ParamTimestamp)";
+            SqlCommand CreateScheduleCommand = new SqlCommand(sql, conn);
+            CreateScheduleCommand.Parameters.AddWithValue("@Schedule_ID", 10);
+            CreateScheduleCommand.Parameters.AddWithValue("@Shift_Length_Minutes", 480);
+            //CreateScheduleCommand.Parameters.AddWithValue("@")
+        }
     }
 }
         
