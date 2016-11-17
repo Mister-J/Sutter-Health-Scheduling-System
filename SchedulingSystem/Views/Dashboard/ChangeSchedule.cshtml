@@ -422,6 +422,22 @@
 
                         <div class="panel-body">
                             <h3>Change Schedule Here</h3>
+                            <div class="form-group">
+                              @using (Html.BeginForm("ChangeSchedule", "Dashboard", FormMethod.Post))
+                              {
+
+
+                             @Html.TextBox("datetimepicker1");
+                                  <input type="submit" value="update" />
+                              }
+                            </div>
+
+
+
+
+
+
+                            <br />
 
 
                             <br />
@@ -552,7 +568,14 @@
     <script src="../jQuery_Files/jquery.js"></script>
     <script src="../jQuery_Files/fullcalendar.js"></script>
     <script src="../jQuery_Files/scheduler.js"></script>
+    <script src="~/Scripts/bootstrap-datetimepicker.js"></script>
+    <script src="~/Scripts/respond.js"></script>
 
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker1').datetimepicker();
+        })
+    </script>
 
 
 </body>

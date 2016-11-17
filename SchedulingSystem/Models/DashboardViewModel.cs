@@ -36,14 +36,14 @@ namespace SchedulingSystem.Models
             return employeeJsonString;
         }
 
-        public void CreateSchedule(string theDate)
+        public void UpdateSchedule(string theDate)
         {
             SqlConnection conn = SqlStatements.ConnectToSql();
-            string sql = "INSERT INTO Master_Schedule(Schedule_ID, Shift_Length_Minutes, Shift_Start, End_Shift, Lunch, Timestamp) VALUES(@IDparam, 480, @ParamStart, @ParamEnd, @ParamLunch, @ParamTimestamp)";
-            SqlCommand CreateScheduleCommand = new SqlCommand(sql, conn);
-            CreateScheduleCommand.Parameters.AddWithValue("@Schedule_ID", 10);
-            CreateScheduleCommand.Parameters.AddWithValue("@Shift_Length_Minutes", 480);
-            //CreateScheduleCommand.Parameters.AddWithValue("@")
+            if (conn.State == ConnectionState.Open) {
+                SqlCommand UpdateSchedule = new SqlCommand("UPDATE Master_Schedule SET Shift_Start = @ParamStartDate WHERE Schedule_ID = 888", conn);
+                UpdateSchedule.Parameters.AddWithValue("@ParamStartDate", theDate);
+                UpdateSchedule.ExecuteNonQuery();
+            }
         }
     }
 }

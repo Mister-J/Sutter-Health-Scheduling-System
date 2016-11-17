@@ -32,10 +32,12 @@ namespace SchedulingSystem.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateSchedule(string datepicker)
+        public ActionResult ChangeSchedule(string datetimepicker1)
         {
-            string test = datepicker;
+            var dashboardData = new DashboardViewModel();
+            string test = datetimepicker1;
             Response.Write(test);
+            dashboardData.UpdateSchedule(test);
             return View();
         }
 
