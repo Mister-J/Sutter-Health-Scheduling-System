@@ -19,6 +19,7 @@ namespace SchedulingSystem
         private static Employee[] employee;
         private static List<EmployeeJson> employeeList;
         private static List<ScheduleJSon> scheduleList;
+        private static string[] listOfEmployees;
 
         public static SqlConnection ConnectToSql()
         {
@@ -31,6 +32,30 @@ namespace SchedulingSystem
         public static string ConnectionStatus()
         {
             return connectionStatus;
+        }
+
+        public static string[] listofEmps(SqlCommand employeeListCommand, SqlCommand countEmp)
+        {
+            if (conn.State == ConnectionState.Open)
+            {
+                int empCount = (int)countEmp.ExecuteScalar();
+                listOfEmployees = new string[empCount];
+                using (SqlDataReader employeeReader = employeeListCommand.ExecuteReader())
+                {
+                    int i = 0;
+                    while (employeeReader.HasRows)
+                    {
+                        while (employeeReader.Read())
+                        {
+                            listOfEmployees[i] = employeeReader.GetString(0);
+                            i++;
+
+                        }
+                        employeeReader.NextResult();
+                    }
+                }
+            }
+            return listOfEmployees;
         }
 
         public static List<ScheduleJSon> retrieveSchedules(SqlCommand scheduleCommand, SqlCommand scheduleCountCommand)

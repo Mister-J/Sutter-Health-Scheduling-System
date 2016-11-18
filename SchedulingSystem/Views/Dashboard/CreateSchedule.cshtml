@@ -434,6 +434,9 @@
                                     <label>End Date and Time</label>
                                     @Html.TextBox("datetimepicker7");
                                     <br />
+                                    <select id="dropDownEmpNames">
+
+                                    </select>
                                     <input type="submit" value="Create" />
                                 }
                             </div>
@@ -575,9 +578,22 @@
     <script src="../jQuery_Files/bootstrap-datetimepicker.fr.js"></script>
 
     <script type="text/javascript">
+        var select = document.getElementById("dropDownEmpNames");
+        var options = @Html.Raw(@Model.listofEmployees());
+        for(var i = 0; i < options.length; i++) {
+            var opt = options[i];
+            var el = document.createElement("option");
+            el.textContent = opt;
+            el.value = opt;
+            select.appendChild(el);
+        }
+
+     
         $(function () {
+           
+            
             $('#datetimepicker6').datetimepicker({
-                
+
             });
             $('#datetimepicker7').datetimepicker({
                 useCurrent: false //Important! See issue #1075
@@ -588,6 +604,8 @@
             $("#datetimepicker7").on("dp.change", function (e) {
                 $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
             });
+           
+
         });
     </script>
 

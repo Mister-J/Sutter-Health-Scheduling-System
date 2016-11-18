@@ -26,6 +26,8 @@ namespace SchedulingSystem.Controllers
             var dashboardData = new DashboardViewModel();
             Response.Write(SqlStatements.connectionStatus);
             Response.Write(test);
+            string employeeTest = dashboardData.listofEmployees();
+            Response.Write(employeeTest);
            // Response.Write(test);
             
             return View(dashboardData);
@@ -58,7 +60,9 @@ namespace SchedulingSystem.Controllers
 
         public ActionResult CreateSchedule()
         {
-            return View();
+            var dashboardData = new DashboardViewModel();
+            Response.Write(dashboardData.listofEmployees());
+            return View(dashboardData);
         }
 
         public ActionResult ChangeSchedule()

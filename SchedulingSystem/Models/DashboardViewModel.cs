@@ -60,6 +60,18 @@ namespace SchedulingSystem.Models
                 CreateSchedule.ExecuteNonQuery();
             }
         }
+
+        public string listofEmployees()
+        {
+            string empNameString;
+            SqlConnection conn = SqlStatements.ConnectToSql();
+            SqlCommand listEmpCommand = new SqlCommand("SELECT Emp_First_Name from Employees", conn);
+            SqlCommand countEmpCommand = new SqlCommand("SELECT count(*) FROM Employees", conn);
+            string[] employees = SqlStatements.listofEmps(listEmpCommand, countEmpCommand);
+            empNameString = JsonConvert.SerializeObject(employees, Formatting.Indented);
+            
+            return empNameString;
+        }
     }
 }
         
