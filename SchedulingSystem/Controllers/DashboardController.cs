@@ -48,6 +48,14 @@ namespace SchedulingSystem.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult CreateSchedule(string datetimepicker6, string datetimepicker7)
+        {
+            var dashboardData = new DashboardViewModel();
+            dashboardData.CreateSchedule(datetimepicker6, datetimepicker7);
+            return View();
+        }
+
         public ActionResult CreateSchedule()
         {
             return View();

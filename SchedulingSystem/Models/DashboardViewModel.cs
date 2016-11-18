@@ -45,6 +45,21 @@ namespace SchedulingSystem.Models
                 UpdateSchedule.ExecuteNonQuery();
             }
         }
+
+        public void CreateSchedule(string startDate, string endDate)
+        {
+            SqlConnection conn = SqlStatements.ConnectToSql();
+            if (conn.State == ConnectionState.Open)
+            {
+                SqlCommand CreateSchedule = new SqlCommand("INSERT INTO Master_Schedule (Schedule_ID, Shift_Length_Minutes, Shift_Start, End_Shift, Timestamp) VALUES(@ParamID, @ParamLengthMinutes, @ParamShiftStart, @ParamEndShift, @ParamTimestamp)", conn);
+                CreateSchedule.Parameters.AddWithValue("@ParamShiftStart", startDate);
+                CreateSchedule.Parameters.AddWithValue("@ParamEndShift", endDate);
+                CreateSchedule.Parameters.AddWithValue("@ParamTimestamp", DateTime.Today);
+                CreateSchedule.Parameters.AddWithValue("@ParamID", 1);
+                CreateSchedule.Parameters.AddWithValue("@ParamLengthMinutes", 480.00);
+                CreateSchedule.ExecuteNonQuery();
+            }
+        }
     }
 }
         
