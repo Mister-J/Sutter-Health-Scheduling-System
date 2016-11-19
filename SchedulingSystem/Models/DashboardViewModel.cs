@@ -52,6 +52,7 @@ namespace SchedulingSystem.Models
             if (conn.State == ConnectionState.Open)
             {
                 SqlCommand CreateSchedule = new SqlCommand("INSERT INTO Master_Schedule (Schedule_ID, Shift_Length_Minutes, Shift_Start, End_Shift, Timestamp) VALUES(@ParamID, @ParamLengthMinutes, @ParamShiftStart, @ParamEndShift, @ParamTimestamp)", conn);
+                //SqlCommand CreateScheduleLines = new SqlCommand("INSERT INTO Schedule_Lines (Schedule_Line_ID, Shift_Minutes, Timestamp")
                 CreateSchedule.Parameters.AddWithValue("@ParamShiftStart", startDate);
                 CreateSchedule.Parameters.AddWithValue("@ParamEndShift", endDate);
                 CreateSchedule.Parameters.AddWithValue("@ParamTimestamp", DateTime.Today);
@@ -61,16 +62,14 @@ namespace SchedulingSystem.Models
             }
         }
 
-        public string listofEmployees()
+        public string[] listofEmployees()
         {
-            string empNameString;
             SqlConnection conn = SqlStatements.ConnectToSql();
-            SqlCommand listEmpCommand = new SqlCommand("SELECT Emp_First_Name from Employees", conn);
+            SqlCommand listEmpCommand = new SqlCommand("SELECT Emp_ID, Emp_First_Name, Emp_Last_Name FROM Employees", conn);
             SqlCommand countEmpCommand = new SqlCommand("SELECT count(*) FROM Employees", conn);
             string[] employees = SqlStatements.listofEmps(listEmpCommand, countEmpCommand);
-            empNameString = JsonConvert.SerializeObject(employees, Formatting.Indented);
             
-            return empNameString;
+            return employees;
         }
     }
 }

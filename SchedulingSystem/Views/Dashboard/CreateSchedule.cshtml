@@ -423,7 +423,7 @@
 
 
                         <div class="panel-body">
-                            <h4>Create Schedule: Step 1</h4>
+                            <h4>Create Schedule</h4>
                             <div class="form-group">
                                 @using (Html.BeginForm("CreateSchedule", "Dashboard", FormMethod.Post))
                                 {
@@ -434,9 +434,10 @@
                                     <label>End Date and Time</label>
                                     @Html.TextBox("datetimepicker7");
                                     <br />
-                                    <select id="dropDownEmpNames">
-
-                                    </select>
+                                    SelectList list = new SelectList(Model.listofEmployees());
+                                    ViewBag.mylist = list;
+                                    @Html.DropDownList("dropDownEmpNames", ViewBag.myList as SelectList);
+                                    <br />
                                     <input type="submit" value="Create" />
                                 }
                             </div>
@@ -578,15 +579,15 @@
     <script src="../jQuery_Files/bootstrap-datetimepicker.fr.js"></script>
 
     <script type="text/javascript">
-        var select = document.getElementById("dropDownEmpNames");
-        var options = @Html.Raw(@Model.listofEmployees());
-        for(var i = 0; i < options.length; i++) {
-            var opt = options[i];
-            var el = document.createElement("option");
-            el.textContent = opt;
-            el.value = opt;
-            select.appendChild(el);
-        }
+       // var select = document.getElementById("dropDownEmpNames");
+      //  var options = Html.Raw(Model.listofEmployees());
+       // for(var i = 0; i < options.length; i++) {
+         //   var opt = options[i];
+           // var el = document.createElement("option");
+           // el.textContent = opt;
+           // el.value = opt;
+            //select.appendChild(el);
+       // }
 
      
         $(function () {

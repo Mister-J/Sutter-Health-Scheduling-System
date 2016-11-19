@@ -26,7 +26,7 @@ namespace SchedulingSystem.Controllers
             var dashboardData = new DashboardViewModel();
             Response.Write(SqlStatements.connectionStatus);
             Response.Write(test);
-            string employeeTest = dashboardData.listofEmployees();
+            string[] employeeTest = dashboardData.listofEmployees();
             Response.Write(employeeTest);
            // Response.Write(test);
             
@@ -51,11 +51,13 @@ namespace SchedulingSystem.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateSchedule(string datetimepicker6, string datetimepicker7)
+        public ActionResult CreateSchedule(string datetimepicker6, string datetimepicker7, string dropDownEmpNames)
         {
             var dashboardData = new DashboardViewModel();
+            string test = dropDownEmpNames;
             dashboardData.CreateSchedule(datetimepicker6, datetimepicker7);
-            return View();
+
+            return View(dashboardData);
         }
 
         public ActionResult CreateSchedule()
