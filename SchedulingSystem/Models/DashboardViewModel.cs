@@ -46,26 +46,50 @@ namespace SchedulingSystem.Models
             }
         }
 
-        public void CreateSchedule(string startDate, string endDate)
+        public void CreateSchedule(string startDate, string endDate, string empName)
         {
+            int Emp_ID = 9999;
+            int MasterID = 99999;
             SqlConnection conn = SqlStatements.ConnectToSql();
+            DateTime todayDate = DateTime.Now;
             if (conn.State == ConnectionState.Open)
             {
                 SqlCommand CreateSchedule = new SqlCommand("INSERT INTO Master_Schedule (Schedule_ID, Shift_Length_Minutes, Shift_Start, End_Shift, Timestamp) VALUES(@ParamID, @ParamLengthMinutes, @ParamShiftStart, @ParamEndShift, @ParamTimestamp)", conn);
                 //SqlCommand CreateScheduleLines = new SqlCommand("INSERT INTO Schedule_Lines (Schedule_Line_ID, Shift_Minutes, Timestamp")
                 CreateSchedule.Parameters.AddWithValue("@ParamShiftStart", startDate);
                 CreateSchedule.Parameters.AddWithValue("@ParamEndShift", endDate);
-                CreateSchedule.Parameters.AddWithValue("@ParamTimestamp", DateTime.Today);
+                CreateSchedule.Parameters.AddWithValue("@ParamTimestamp", todayDate);
                 CreateSchedule.Parameters.AddWithValue("@ParamID", 1);
                 CreateSchedule.Parameters.AddWithValue("@ParamLengthMinutes", 480.00);
                 CreateSchedule.ExecuteNonQuery();
+                SqlCommand CreateScheduleLines = new SqlCommand("INSERT INTO Schedule_Lines (Schedule_Line_ID, Shift_Minutes, Timestamp, Employees_Emp_ID, Master_Schedule_Schedule_ID) VALUES(@ParamSchedID, @ParamMinutes, @ParamTimeStamp, @ParamEmpID, @ParamMasterID)", conn);
+                SqlCommand getEmployeeName = new SqlCommand("Select Emp_ID, Schedule_ID FROM Employees, Master_Schedule where Emp_First_Name = @ParamEmpName and Shift_Start = @ParamStart and End_Shift = @ParamEnd and Timestamp = @ParamNow", conn);
+                getEmployeeName.Parameters.AddWithValue("@ParamEmpName", empName);
+                getEmployeeName.Parameters.AddWithValue("@ParamStart", startDate);
+                getEmployeeName.Parameters.AddWithValue("@ParamEnd", endDate);
+                getEmployeeName.Parameters.AddWithValue("@ParamNow", todayDate);
+                using (SqlDataReader employeeNameReader = getEmployeeName.ExecuteReader())
+                {
+                    while (employeeNameReader.Read())
+                    {
+                        Emp_ID = employeeNameReader.GetInt32(0);
+                        MasterID = employeeNameReader.GetInt32(1);
+                    }
+                    
+                }
+                CreateScheduleLines.Parameters.AddWithValue("@ParamSchedID", 1);
+                CreateScheduleLines.Parameters.AddWithValue("@ParamMinutes", 120.00);
+                CreateScheduleLines.Parameters.AddWithValue("@ParamTimeStamp", todayDate);
+                CreateScheduleLines.Parameters.AddWithValue("@ParamEmpID", Emp_ID);
+                CreateScheduleLines.Parameters.AddWithValue("@ParamMasterID", MasterID);
+                CreateScheduleLines.ExecuteNonQuery();
             }
         }
 
         public string[] listofEmployees()
         {
             SqlConnection conn = SqlStatements.ConnectToSql();
-            SqlCommand listEmpCommand = new SqlCommand("SELECT Emp_ID, Emp_First_Name, Emp_Last_Name FROM Employees", conn);
+            SqlCommand listEmpCommand = new SqlCommand("SELECT Emp_First_Name FROM Employees", conn);
             SqlCommand countEmpCommand = new SqlCommand("SELECT count(*) FROM Employees", conn);
             string[] employees = SqlStatements.listofEmps(listEmpCommand, countEmpCommand);
             

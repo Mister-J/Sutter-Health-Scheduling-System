@@ -47,8 +47,7 @@ namespace SchedulingSystem
                     {
                         while (employeeReader.Read())
                         {
-                            string s = employeeReader.GetInt32(0).ToString() + " - " + employeeReader.GetString(1) + " " + employeeReader.GetString(2);
-                            listOfEmployees[i] = s;
+                            listOfEmployees[i] = employeeReader.GetString(0);
                             i++;
 
                         }

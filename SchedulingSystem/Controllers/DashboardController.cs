@@ -55,7 +55,7 @@ namespace SchedulingSystem.Controllers
         {
             var dashboardData = new DashboardViewModel();
             string test = dropDownEmpNames;
-            dashboardData.CreateSchedule(datetimepicker6, datetimepicker7);
+            dashboardData.CreateSchedule(datetimepicker6, datetimepicker7, test);
 
             return View(dashboardData);
         }
