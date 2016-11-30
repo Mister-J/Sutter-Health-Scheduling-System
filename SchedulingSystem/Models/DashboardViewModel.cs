@@ -9,12 +9,13 @@ using System.Data;
 using System.Configuration;
 using Newtonsoft.Json;
 
-
+//This is the main model for the dashboard view
 
 namespace SchedulingSystem.Models
 {
     public class DashboardViewModel
     {
+        //GetJson is a method that returns a json string which is used for the calendar on the dashboard
         public string GetJson()
         {
             string scheduleJsonString;
@@ -28,6 +29,7 @@ namespace SchedulingSystem.Models
 
         }
 
+        //EmployeeJson returns a json string of all the employees in the dashboard to be used with the javascript calendar.
         public string EmployeeJson()
         {
             string employeeJsonString;
@@ -36,6 +38,8 @@ namespace SchedulingSystem.Models
             return employeeJsonString;
         }
 
+        //this method is used to change the master schedule. This isn't fully implemented yet.
+        //still going through testing. 
         public void UpdateSchedule(string theDate)
         {
             SqlConnection conn = SqlStatements.ConnectToSql();
@@ -46,6 +50,8 @@ namespace SchedulingSystem.Models
             }
         }
 
+        //this method creates the master schedule as well as the schedule lines for that 
+        //particular master schedule
         public void CreateSchedule(string startDate, string endDate, string empName)
         {
             int Emp_ID = 9999;
@@ -55,7 +61,6 @@ namespace SchedulingSystem.Models
             if (conn.State == ConnectionState.Open)
             {
                 SqlCommand CreateSchedule = new SqlCommand("INSERT INTO Master_Schedule (Schedule_ID, Shift_Length_Minutes, Shift_Start, End_Shift, Timestamp) VALUES(@ParamID, @ParamLengthMinutes, @ParamShiftStart, @ParamEndShift, @ParamTimestamp)", conn);
-                //SqlCommand CreateScheduleLines = new SqlCommand("INSERT INTO Schedule_Lines (Schedule_Line_ID, Shift_Minutes, Timestamp")
                 CreateSchedule.Parameters.AddWithValue("@ParamShiftStart", startDate);
                 CreateSchedule.Parameters.AddWithValue("@ParamEndShift", endDate);
                 CreateSchedule.Parameters.AddWithValue("@ParamTimestamp", todayDate);
@@ -86,6 +91,7 @@ namespace SchedulingSystem.Models
             }
         }
 
+        //this method returns an array of all the employees
         public string[] listofEmployees()
         {
             SqlConnection conn = SqlStatements.ConnectToSql();
@@ -99,12 +105,23 @@ namespace SchedulingSystem.Models
 }
         
 
-
+//the EmployeeJson class is a json class to put our employee schedule data into two properties so the calendar can display the employees' shifts.
+//the calendar uses two properties which are "id" and "title." 
+//For id, we used the schedule id in the database.
+//For title, we used the employees first name. 
 public class EmployeeJson
 {
     public int id { get; set; }
     public string title { get; set; }
 }
+
+//the ScheduleJson class is a json class in which we instantiate for the schedules in the database.
+//This class is used so the calendar can render the data.
+//id can be any number
+//resourceID is the schedule id.
+//start is the start time
+//end is the end time
+//title is the employees' first name that is working that shift. 
 
 public class ScheduleJSon
 {

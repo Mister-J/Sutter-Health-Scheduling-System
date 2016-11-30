@@ -318,7 +318,7 @@
                         <div class="panel-heading">
                             <div class="row">
                                 <div class="col-xs-3">
-                                    <img src="http://oi58.tinypic.com/2nuspau.jpg" class="img-circle" style="width:128px;height:128px;" />
+                                    <img src="https://theme.blue/tora-demo/wp-content/uploads/sites/3/2015/11/ec4-1.png" class="img-circle" style="width:128px;height:128px;" />
                                 </div>
                             </div>
                         </div>
@@ -336,7 +336,7 @@
                         <div class="panel-heading">
                             <div class="row">
                                 <div class="col-xs-3">
-                                    <img src="http://oi58.tinypic.com/2nuspau.jpg" class="img-circle" style="width:128px;height:128px;"/>
+                                    <img src="https://theme.blue/tora-demo/wp-content/uploads/sites/3/2015/11/ec4-1.png" class="img-circle" style="width:128px;height:128px;"/>
                                 </div>
                             </div>
                         </div>
@@ -354,7 +354,7 @@
                         <div class="panel-heading">
                             <div class="row">
                                 <div class="col-xs-3">
-                                    <img src="http://oi58.tinypic.com/2nuspau.jpg" class="img-circle" style="width:128px;height:128px;" />
+                                    <img src="https://theme.blue/tora-demo/wp-content/uploads/sites/3/2015/11/ec4-1.png" class="img-circle" style="width:128px;height:128px;" />
                                 </div>
                             </div>
                         </div>
@@ -372,7 +372,7 @@
                         <div class="panel-heading">
                             <div class="row">
                                 <div class="col-xs-3">
-                                    <img src="http://oi58.tinypic.com/2nuspau.jpg" class="img-circle" style="width:128px;height:128px;" />
+                                    <img src="https://theme.blue/tora-demo/wp-content/uploads/sites/3/2015/11/ec4-1.png" class="img-circle" style="width:128px;height:128px;" />
                                 </div>
                             </div>
                         </div>
@@ -547,9 +547,6 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="../jQuery_Files/sb-admin-2.js"></script>
-    <script src="../jQuery_Files/pikaday.js"></script>
-    <script src="../jQuery_Files/Chart.js"></script>
-    <script src="../jQuery_Files/responsive-calendar.js"></script>
     <script src="../jQuery_Files/moment.js"></script>
     <script src="../jQuery_Files/jquery.js"></script>
     <script src="../jQuery_Files/fullcalendar.js"></script>
@@ -559,10 +556,9 @@
 
         $(function () { // document ready
             
-            var jsonString = @Html.Raw(@Model.EmployeeJson());
-            var scheduleJsonString = @Html.Raw(@Model.GetJson());
+            var jsonString = @Html.Raw(Model.EmployeeJson());
+            var scheduleJsonString = @Html.Raw(Model.GetJson());
                 
-            
             
             $('#calendar').fullCalendar({
                 schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
@@ -585,25 +581,16 @@
                 },
                 resourceLabelText: 'Employees',
                 resources: jsonString,
-                   // [ { id: 'a', title: 'Test' }],
-                    //[
-                    //[{ id: 'b', title: 'test' }],
-
-                   // { id: 'c', title: 'test1' }],
+                   
 
 
 
 
                 events: scheduleJsonString,
-                    //[ { id: '1', resourceId: 'a', start: '2016-09-07T02:00:00', end: '2016-09-07T07:00:00', title: 'Test545454545' }],
-                    //[{ id: '1', resourceID: 'b', start: '2016-09-07T02:00:00', end: '2016-09-07T07:00:00', title: 'event 1' }],
-                  //  { id: '2', resourceId: 'c', start: '2016-09-07T05:00:00', end: '2016-09-07T22:00:00', title: 'event 2' },
-                   // { id: '3', resourceId: 'd', start: '2016-09-06', end: '2016-09-08', title: 'event 3' },
-                    //{ id: '4', resourceId: 'e', start: '2016-09-07T03:00:00', end: '2016-09-07T08:00:00', title: 'event 4' },
-                    //{ id: '5', resourceId: 'f', start: '2016-09-07T00:30:00', end: '2016-09-07T02:30:00', title: 'event 5' }],
+                    
                 
             });
-
+           
         });
 
 
@@ -611,62 +598,3 @@
 
 </body>
 </html>
-
-<!--
-commented code here:
-    area chart default template
-        <div class="panel-body">
-                            <div id="morris-area-chart"></div>
-                        </div>
-    <div class="panel-body">
-                            <div id="morris-area-chart"></div>
-                        </div>
-
-
-
-        var picker = new Pikaday(
-            {
-                field: document.getElementById('datepicker'),
-                firstDay: 1,
-                minDate: new Date(),
-                maxDate: new Date(2020, 12, 31),
-                yearRange: [2000, 2020]
-            });
-
-        var a = 1;
-        var b = 2;
-        var c = 3;
-        var d = 4;
-        var e = 5;
-        var f = 6;
-        var g = 7;
-        var barChartData = {
-            labels: ["Joey", "Jake", "Jacob", "Yen", "Naser", "Duru", "Esther"],
-            datasets: [
-                {
-                    fillColor: "gray",
-                    strokeColor: "blue",
-                    data: [a, b, c, d, e, f, g]
-                }
-
-            ]
-
-        }
-        window.onload = function () {
-            var ctx = document.getElementById("EmployeeSchedule").getContext("2d");
-            window.myBar = new Chart(ctx).Bar(barChartData, {
-                responsive: true
-            });
-        }
-
-
-        var picker = new Pikaday(
-            {
-                field: document.getElementById('datepicker'),
-                firstDay: 1,
-                minDate: new Date(),
-                maxDate: new Date(2020, 12, 31),
-                yearRange: [2000, 2020]
-            });
--->
-

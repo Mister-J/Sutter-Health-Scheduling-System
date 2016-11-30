@@ -14,8 +14,8 @@ namespace SchedulingSystem.Controllers
 {
     public class DashboardController : Controller
     {
-        public bool isLoggedIn = false;
         // GET: Dashboard
+        //Index is the main dashboard page where you can see today's schedule and future schedules. 
         public ActionResult Index()
         {
             var connectionInfo = new ConnectToLdap();
@@ -24,11 +24,7 @@ namespace SchedulingSystem.Controllers
 
       
             var dashboardData = new DashboardViewModel();
-            Response.Write(SqlStatements.connectionStatus);
-            Response.Write(test);
             string[] employeeTest = dashboardData.listofEmployees();
-            Response.Write(employeeTest);
-           // Response.Write(test);
             
             return View(dashboardData);
         }
@@ -38,7 +34,6 @@ namespace SchedulingSystem.Controllers
         {
             var dashboardData = new DashboardViewModel();
             string test = datetimepicker1;
-            Response.Write(test);
             dashboardData.UpdateSchedule(test);
             return View();
         }
@@ -63,7 +58,6 @@ namespace SchedulingSystem.Controllers
         public ActionResult CreateSchedule()
         {
             var dashboardData = new DashboardViewModel();
-            Response.Write(dashboardData.listofEmployees());
             return View(dashboardData);
         }
 
@@ -72,6 +66,8 @@ namespace SchedulingSystem.Controllers
             return View();
         }
 
+        //this method creates an ldap connection to our active directory
+        //still in development. 
         static DirectoryEntry createDirectoryEntry()
         {
             // create and return new LDAP connection with desired settings  

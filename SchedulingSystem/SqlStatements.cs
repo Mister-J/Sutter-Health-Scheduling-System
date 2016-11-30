@@ -1,4 +1,9 @@
-﻿using System;
+﻿/*
+The purpose of this class is to take the most commonly used sql statements and put them in one class.
+*/
+
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -21,6 +26,7 @@ namespace SchedulingSystem
         private static List<ScheduleJSon> scheduleList;
         private static string[] listOfEmployees;
 
+        //this method creates an open connection to our sql database.
         public static SqlConnection ConnectToSql()
         {
             conn = new SqlConnection("server=sutterdb.cdnagtbeyki3.us-west-2.rds.amazonaws.com,1433; database=SutterDB;user id=sutterdbadmin;password=M6)wo697s*W");
@@ -29,11 +35,16 @@ namespace SchedulingSystem
             return conn;
         }
 
+        //this method is used to check if we have successfully connection to the sql server.
+        //this is used primarily for testing purposes. 
         public static string ConnectionStatus()
         {
             return connectionStatus;
         }
 
+
+        //this method takes in a sql command, particulary a command to get a list of all the employees.
+        //it then returns a string array of all the employees. 
         public static string[] listofEmps(SqlCommand employeeListCommand, SqlCommand countEmp)
         {
             if (conn.State == ConnectionState.Open)
@@ -58,6 +69,9 @@ namespace SchedulingSystem
             return listOfEmployees;
         }
 
+        //this method gets a sql command to retrieve all the schedules.
+        //it then puts the schedule data into a list 
+        //with that list, it converts it into a json object for our javascript calendar to use. 
         public static List<ScheduleJSon> retrieveSchedules(SqlCommand scheduleCommand, SqlCommand scheduleCountCommand)
         {
             if (conn.State == ConnectionState.Open)
@@ -110,6 +124,12 @@ namespace SchedulingSystem
             }
             return scheduleList;
         }
+
+
+        //this method only returns employees' schedules in json form for our javascript calendar to use. 
+        //the schedules are retrieved in the previous method
+        //the employees for those schedules are retrieved in the previous method as well
+        //we put those employees into a list which is converted into json format for our javascript calendar to use. 
 
         public static List<EmployeeJson> getEmployeeJson()
         {
