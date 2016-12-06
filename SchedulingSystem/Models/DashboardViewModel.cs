@@ -60,14 +60,14 @@ namespace SchedulingSystem.Models
             DateTime todayDate = DateTime.Now;
             if (conn.State == ConnectionState.Open)
             {
-                SqlCommand CreateSchedule = new SqlCommand("INSERT INTO Master_Schedule (Schedule_ID, Shift_Length_Minutes, Shift_Start, End_Shift, Timestamp) VALUES(@ParamID, @ParamLengthMinutes, @ParamShiftStart, @ParamEndShift, @ParamTimestamp)", conn);
+                SqlCommand CreateSchedule = new SqlCommand("INSERT INTO Master_Schedule (Shift_Length_Minutes, Shift_Start, End_Shift, Timestamp) VALUES(@ParamLengthMinutes, @ParamShiftStart, @ParamEndShift, @ParamTimestamp)", conn);
                 CreateSchedule.Parameters.AddWithValue("@ParamShiftStart", startDate);
                 CreateSchedule.Parameters.AddWithValue("@ParamEndShift", endDate);
                 CreateSchedule.Parameters.AddWithValue("@ParamTimestamp", todayDate);
-                CreateSchedule.Parameters.AddWithValue("@ParamID", 1);
+                //CreateSchedule.Parameters.AddWithValue("@ParamID", 1);
                 CreateSchedule.Parameters.AddWithValue("@ParamLengthMinutes", 480.00);
                 CreateSchedule.ExecuteNonQuery();
-                SqlCommand CreateScheduleLines = new SqlCommand("INSERT INTO Schedule_Lines (Schedule_Line_ID, Shift_Minutes, Timestamp, Employees_Emp_ID, Master_Schedule_Schedule_ID) VALUES(@ParamSchedID, @ParamMinutes, @ParamTimeStamp, @ParamEmpID, @ParamMasterID)", conn);
+                SqlCommand CreateScheduleLines = new SqlCommand("INSERT INTO Schedule_Lines (Shift_Minutes, Timestamp, Employees_Emp_ID, Master_Schedule_Schedule_ID) VALUES(@ParamMinutes, @ParamTimeStamp, @ParamEmpID, @ParamMasterID)", conn);
                 SqlCommand getEmployeeName = new SqlCommand("Select Emp_ID, Schedule_ID FROM Employees, Master_Schedule where Emp_First_Name = @ParamEmpName and Shift_Start = @ParamStart and End_Shift = @ParamEnd and Timestamp = @ParamNow", conn);
                 getEmployeeName.Parameters.AddWithValue("@ParamEmpName", empName);
                 getEmployeeName.Parameters.AddWithValue("@ParamStart", startDate);
@@ -82,7 +82,7 @@ namespace SchedulingSystem.Models
                     }
                     
                 }
-                CreateScheduleLines.Parameters.AddWithValue("@ParamSchedID", 1);
+                //CreateScheduleLines.Parameters.AddWithValue("@ParamSchedID", MasterID);
                 CreateScheduleLines.Parameters.AddWithValue("@ParamMinutes", 120.00);
                 CreateScheduleLines.Parameters.AddWithValue("@ParamTimeStamp", todayDate);
                 CreateScheduleLines.Parameters.AddWithValue("@ParamEmpID", Emp_ID);
